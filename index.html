@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<title>Bus times from Leeds Station</title>
+	<link rel="StyleSheet" href="https://open-innovations.org/resources/style.css" type="text/css" />
+	<script>
+	(function(root){
+
+		if(!root.OI) root.OI = {};
+
+		root.OI.ready = function(f){
+			if(/in/.test(document.readyState)) setTimeout('OI.ready('+f+')',9);
+			else f();
+		};
+	})(window || this);
+	
+	</script>
+</head>
+<body class="b6-bg">
+
+	<header>
+		<div class="holder">
+			<h1>Bus departures</h1>
+		</div>
+	</header>
+
+	<div class="doublepadded" id="departures">
+
+	</div>
+	
+	<footer class="doublepadded">
+		<div class="holder">
+			<h2>Credits</h2>
+			<p>&copy; Open Innovations 2022.</p>
+			
+		</div>
+	</footer>
+
+</body>
+</html>
