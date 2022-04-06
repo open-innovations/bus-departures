@@ -6,7 +6,6 @@
 	<meta http-equiv="refresh" content="60">
 	<title>Bus times from Leeds Station</title>
 	<link rel="StyleSheet" href="https://open-innovations.org/resources/style.css" type="text/css" />
-	<link rel="StyleSheet" href="static/custom.css" type="text/css" />
 	<script>
 	(function(root){
 
@@ -22,25 +21,27 @@
 </head>
 <body class="b6-bg">
 
-	<header>
+	<header class="doublepadded">
 		<div class="holder">
 			<h1>Bus departures</h1>
 		</div>
 	</header>
 
 	<div class="doublepadded" id="departures">
-		<table class="paddingBetweenCols">
-		{%for message in get_flashed_messages()%}
+		<p>Buses departing from Leeds Bus Station.</p>
+		<p>(Refreshes every 60 Seconds)</p>
+		<table class="odi">
+			<tr><th>Stop</th><th>Service</th><th>To</th><th>Time</th></tr>
+			{%for message in get_flashed_messages()%}
 			<tr>{{message|safe}}</tr>
-		{% endfor %}
+			{% endfor %}
 		</table>
 	</div>
 	
 	<footer class="doublepadded">
 		<div class="holder">
 			<h2>Credits</h2>
-			<p>&copy; Open Innovations 2022.</p>
-			
+			<p>&copy; Open Innovations 2022.</p>			
 		</div>
 	</footer>
 
