@@ -45,20 +45,21 @@ def getAllInfo(stops):
 
     return sorted(buses, key=lambda x:busInfo(x[3]))
 
-
+STAND_BASE_ID = 45030219
 def allCoachStnStops():
     stops = []
     for stand in range(4,23):
         stops.append(("Stand " + str(stand),STAND_BASE_ID + stand))
     return stops
 
-STAND_BASE_ID = 45030219
-stops = []
 
-#stops = [("Harrogate Rd",45013604),("ScotHall",45011027)]
-stops = allCoachStnStops()
-
-buses = getAllInfo(stops)
+if __name__ == "__main__":
     
-for bus in buses:
-    print(bus)
+    stops = []
+    #stops = [("Harrogate Rd",45013604),("ScotHall",45011027)]
+    stops = allCoachStnStops()
+
+    buses = getAllInfo(stops)
+        
+    for bus in buses:
+        print(bus)
