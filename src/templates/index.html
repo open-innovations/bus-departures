@@ -3,8 +3,10 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8" />
+	<meta http-equiv="refresh" content="60">
 	<title>Bus times from Leeds Station</title>
 	<link rel="StyleSheet" href="https://open-innovations.org/resources/style.css" type="text/css" />
+	<link rel="StyleSheet" href="static/custom.css" type="text/css" />
 	<script>
 	(function(root){
 
@@ -27,9 +29,11 @@
 	</header>
 
 	<div class="doublepadded" id="departures">
-		<ul class="grid">
-			<li><iframe src="http://yorkshire.acisconnect.com/Text/WebDisplay.aspx?stopRef=45030236&stopName=Stand+17" height="300px"></iframe></li>	
-		</ul>
+		<table class="paddingBetweenCols">
+		{%for message in get_flashed_messages()%}
+			<tr>{{message|safe}}</tr>
+		{% endfor %}
+		</table>
 	</div>
 	
 	<footer class="doublepadded">
