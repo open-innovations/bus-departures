@@ -1,13 +1,13 @@
-from posixpath import split
 import requests
 from bs4 import BeautifulSoup
 import pendulum
 
-def minsAway(minsAfMidLocal,timeDueStr):
-    
+def minsAway(minsAfMidLocal,timeDueStr):    
     splitTime = timeDueStr.split(":")
     minsAfMidDue = 60 * int(splitTime[0]) + int(splitTime[1])
-    
+
+    # Adds day to buses with late night due times.
+    minsAfMidDue = minsAfMidDue + (24 * 60 * 60) if (minsAfMidDue - minsAfMidLocal) < -10 else minsAfMidDue 
     return minsAfMidDue - minsAfMidLocal
 
 def busMinsAway(minsAfMid,dueInfo):
@@ -18,13 +18,6 @@ def busMinsAway(minsAfMid,dueInfo):
         return 0
 
     return int(dueInfo[:-5])
-
-def numStr(num):
-    stri = ""
-    for i in range(0,num):
-        stri = stri + "1"
-
-    return stri
 
 URL = "http://yorkshire.acisconnect.com/Text/WebDisplay.aspx?stopRef={}"
 def getInfoFromID(stop):
