@@ -1,14 +1,23 @@
+from posixpath import split
 import requests
 from bs4 import BeautifulSoup
+import pendulum
 
-def busInfo(info):
-    if ":" in info:
-        return "ZZZ" + info
+def minsAway(minsAfMidLocal,timeDueStr):
     
-    if "Due" in info:
-        return "0"
+    splitTime = timeDueStr.split(":")
+    minsAfMidDue = 60 * int(splitTime[0]) + int(splitTime[1])
+    
+    return minsAfMidDue - minsAfMidLocal
 
-    return numStr(int(info[:-5]))
+def busMinsAway(minsAfMid,dueInfo):
+    if ":" in dueInfo:
+        return minsAway(minsAfMid,dueInfo)
+    
+    if "Due" in dueInfo:
+        return 0
+
+    return int(dueInfo[:-5])
 
 def numStr(num):
     stri = ""
@@ -42,8 +51,9 @@ def getAllInfo(stops):
     buses = []
     for stop in stops:
         buses.extend(getInfoFromID(stop))
-
-    return sorted(buses, key=lambda x:busInfo(x[3]))
+    localTime = pendulum.now("Europe/London")
+    minsAfMidLocal  = localTime.hour * 60 + localTime.minute
+    return sorted(buses, key=lambda x:busMinsAway(minsAfMidLocal,x[3]))
 
 STAND_BASE_ID = 45030219
 def allCoachStnStops():
@@ -56,7 +66,6 @@ def allCoachStnStops():
 if __name__ == "__main__":
     
     stops = []
-    #stops = [("Harrogate Rd",45013604),("ScotHall",45011027)]
     stops = allCoachStnStops()
 
     buses = getAllInfo(stops)
