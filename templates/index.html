@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<title>West Yorkshire Bus Departures</title>
+	<link rel="StyleSheet" href="https://open-innovations.org/resources/style.css" type="text/css" />
+	<script>
+	(function(root){
+
+		if(!root.OI) root.OI = {};
+
+		root.OI.ready = function(f){
+			if(/in/.test(document.readyState)) setTimeout('OI.ready('+f+')',9);
+			else f();
+		};
+	})(window || this);	
+	</script>
+</head>
+<body class="b6-bg">
+
+	<header class="seasonal">
+		<div class="glory seasonal">
+			<div class="glory-logo">
+				<div class="holder">
+					<a href="https://open-innovations.org/" class="oi-logo"><img alt="Open Innovations" src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='640' height='640' overflow='auto' viewBox='-32 -32 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='oi-person'%3E%3Cpath d='m-32-32h64v64h-12v-24a4 4 0 0 0 -4 -4h-8a4 4 0 0 0 -4 4v24h-36zm44 27m-8 0a8 8 0 1 0 16 0 8 8 0 1 0-16 0' fill='%23fff'%3E%3C/path%3E%3C/mask%3E%3Cg id='oi-logo' fill='black'%3E%3Ccircle r='32' mask='url(%23oi-person)'%3E%3C/circle%3E%3C/g%3E%3C/svg%3E" width="200" height="200" /><div class="oi-logo-text">Open Innovations</div></a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="block b5-bg">
+		<div class="holder">
+			<h1 style="margin-bottom: 1em;text-align:center;">Bus Departures</h1>	
+		</div>
+	</div>
+
+	<div class="holder">
+		<h2>About</h2>
+		<p>West Yorkshire Metro provide a "yournextbus" service however you can only search bus departures for one stop at a time. With this tool you access bus times for multiple stops.</p>
+		<p>This is not an ideal soloution, it involves making a seperate request for each bus stop. This means that bus stations with a lot of stops eg. Leeds City will take a good few seconds to load.</p>
+		<p>Times for West Yorkshire stations/points/hubs below:</p>
+
+		<h2>Leeds</h2>			
+		<ul class="grid">
+			<li><a href="/leeds-city-bus-station" class="b1-bg"><h3>Leeds City Bus Station</h3></a></li>
+			<li><a href="/leeds-corn-exchange-bus-point" class="b1-bg"><h3>Leeds Corn Exchange Bus Point</h3></a></li>
+			<li><a href="/leeds-bradford-airport-bus-point" class="b1-bg"><h3>Leeds Bradford Airport Bus Point</h3></a></li>
+			<li><a href="/leeds-station-interchange" class="b1-bg"><h3>Leeds Station Interchange</h3></a></li>
+			<li><a href="/leeds-infirmary-street-bus-point" class="b1-bg"><h3>Leeds Infirmary Street Bus Point</h3></a></li>
+			<li><a href="/bramley-centre-bus-station" class="b1-bg"><h3>Bramley Centre Bus Station</h3></a></li>
+			<li><a href="/morley-town-hall-hub" class="b1-bg"><h3>Morley Town Hall Hub</h3></a></li>
+			<li><a href="/otley-bus-station" class="b1-bg"><h3>Otley Bus Station</h3></a></li>
+			<li><a href="/pudsey-bus-station" class="b1-bg"><h3>Pudsey Bus Station</h3></a></li>
+			<li><a href="/seacroft-bus-station" class="b1-bg"><h3>Seacroft Bus Station</h3></a></li>
+			<li><a href="/wetherby-bus-station" class="b1-bg"><h3>Wetherby Bus Station</h3></a></li>			
+		</ul>		
+	</div>
+
+	<footer class="doublepadded">
+		<div>
+			<h2>Credits</h2>
+			<p>&copy; Open Innovations 2022.</p>			
+		</div>
+	</footer>
+
+</body>
+</html>

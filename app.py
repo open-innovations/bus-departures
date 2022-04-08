@@ -3,8 +3,13 @@ import bustimes
 
 app = Flask(__name__)
 app.secret_key = "not_very_secret"
-@app.route("/bus-times")
+
+@app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/bus-times")
+def busTimes():
     stops = bustimes.allCoachStnStops() if len(request.args) < 1 else stopsFromString(request.args.get("q"))
     return renderPageFromStops(stops)
 
@@ -33,7 +38,7 @@ def showPage3():
 
     return renderPageFromStops(stops)
 
-@app.route("/leeds=bradford-airport-bus-point")
+@app.route("/leeds-bradford-airport-bus-point")
 def showPage4():
     prefix = "Stand "
     stops = stopsFromString("""1:45025387;2:45025386;3:45028272""",prefix)
