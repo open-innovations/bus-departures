@@ -102,6 +102,27 @@ def showPage11():
 
     return renderPageFromStops(stops,"Wetherby Bus Station") 
 
+@app.route("/halifax-bus-station")
+def showPage13():
+    prefix = "Stand "
+    stops = stopsFromString("""A:45032309;B:45032310;C:45032311;D:45032312;E:45032313;F:45032314""",prefix)
+
+    return renderPageFromStops(stops,"Halifax Bus Station")
+
+@app.route("/brighouse-bus-station")
+def showPage14():
+    prefix = "Stand "
+    stops = stopsFromString("""A:45030120;B:45030330;C:45030329;D:45030328;E:45030121;F:45030119""",prefix)
+
+    return renderPageFromStops(stops,"Brighouse Bus Station")
+
+@app.route("/todmorden-bus-station")
+def showPage15():
+    prefix = "Stand "
+    stops = stopsFromString("""A:45023172;B:45023173;C:45023174;D:45023175;E:45023176""",prefix)
+
+    return renderPageFromStops(stops,"Todmorden Bus Station")
+
 
 def renderPageFromStops(stops,stationName):
     buses = bustimes.getAllInfo(stops)
