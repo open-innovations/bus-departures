@@ -99,7 +99,7 @@ def renderPageFromStops(stops):
             s = s + "<td>" + attr + "</td>"
         flash(s)
 
-    return render_template("index.html")
+    return render_template("bus-times.html")
 
 
 def stopsFromString(stops,prefix=""):
