@@ -1,10 +1,8 @@
 from flask import Flask, render_template, request, flash
 import bustimes
-import logging
 
 app = Flask(__name__)
 app.secret_key = "not_very_secret"
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 
 @app.route("/")
 def index():
@@ -12,7 +10,6 @@ def index():
 
 @app.route("/bus-times")
 def busTimes():
-    logging.debug(request.args)
     stops = bustimes.allCoachStnStops() if "q" not in request.args else stopsFromString(request.args.get("q")) 
     routes = [] if "r" not in request.args else routesFromString(request.args.get("r"))
     routes = [route.upper() for route in routes]
