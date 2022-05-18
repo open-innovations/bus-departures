@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, flash
 import bustimes
+import logging
 
 app = Flask(__name__)
 app.secret_key = "not_very_secret"
+logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 
 @app.route("/")
 def index():
@@ -10,8 +12,11 @@ def index():
 
 @app.route("/bus-times")
 def busTimes():
-    stops = bustimes.allCoachStnStops() if len(request.args) < 1 else stopsFromString(request.args.get("q"))
-    return renderPageFromStops(stops,"Custom")
+    logging.debug(request.args)
+    stops = bustimes.allCoachStnStops() if "q" not in request.args else stopsFromString(request.args.get("q")) 
+    routes = [] if "r" not in request.args else routesFromString(request.args.get("r"))
+    routes = [route.upper() for route in routes]
+    return renderPageFromStops(stops,routes,"Custom")
 
 @app.route("/leeds-city-bus-station")
 def showPage1():
@@ -123,9 +128,11 @@ def showPage15():
 
     return renderPageFromStops(stops,"Todmorden Bus Station")
 
-
 def renderPageFromStops(stops,stationName):
-    buses = bustimes.getAllInfo(stops)
+    return renderPageFromStops(stops,[],stationName)
+
+def renderPageFromStops(stops,routes,stationName):
+    buses = bustimes.getAllInfo(stops,routes)
     
     for bus in buses:
         s = ""
@@ -136,6 +143,9 @@ def renderPageFromStops(stops,stationName):
     return render_template("bus-times.html",station=stationName)
 
 
-def stopsFromString(stops,prefix=""):
-    return [(prefix + stop.split(":")[0],stop.split(":")[1]) for stop in stops.split(";")]
+def stopsFromString(stopsStr,prefix=""):
+    return [(prefix + stop.split(":")[0],stop.split(":")[1]) for stop in stopsStr.split(";")]
+
+def routesFromString(routesStr):
+    return routesStr.split(":")
 

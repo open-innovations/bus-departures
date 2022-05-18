@@ -20,7 +20,7 @@ def busMinsAway(minsAfMid,dueInfo):
     return int(dueInfo[:-5])
 
 URL = "http://yorkshire.acisconnect.com/Text/WebDisplay.aspx?stopRef={}"
-def getInfoFromID(stop):
+def getInfoFromID(stop,routes):
     result = requests.get(URL.format(stop[1]))
     doc = BeautifulSoup(result.text,"html.parser")
 
@@ -36,14 +36,15 @@ def getInfoFromID(stop):
             temp = row.find_all("td")
             temp = [td.text for td in temp][:-1]
             temp.insert(0,stop[0])
-            buses.append(temp)
+            if temp[1].upper() in routes or len(routes) == 0 or (len(routes) == 1 and routes[0] == ""):
+                buses.append(temp)
 
     return buses
 
-def getAllInfo(stops):
+def getAllInfo(stops,routes):
     buses = []
     for stop in stops:
-        buses.extend(getInfoFromID(stop))
+        buses.extend(getInfoFromID(stop,routes))
     localTime = pendulum.now("Europe/London")
     minsAfMidLocal  = localTime.hour * 60 + localTime.minute
     return sorted(buses, key=lambda x:busMinsAway(minsAfMidLocal,x[3]))
