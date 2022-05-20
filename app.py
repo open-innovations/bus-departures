@@ -13,7 +13,7 @@ def busTimes():
     stops = bustimes.allCoachStnStops() if "q" not in request.args else stopsFromString(request.args.get("q")) 
     routes = [] if "r" not in request.args else routesFromString(request.args.get("r"))
     routes = [route.upper() for route in routes]
-    return renderPageFromStops(stops,routes,"Custom")
+    return renderPageFromStops1(stops,routes,"Custom")
 
 @app.route("/leeds-city-bus-station")
 def showPage1():
@@ -126,9 +126,9 @@ def showPage15():
     return renderPageFromStops(stops,"Todmorden Bus Station")
 
 def renderPageFromStops(stops,stationName):
-    return renderPageFromStops(stops,[],stationName)
+    return renderPageFromStops1(stops,[],stationName)
 
-def renderPageFromStops(stops,routes,stationName):
+def renderPageFromStops1(stops,routes,stationName):
     buses = bustimes.getAllInfo(stops,routes)
     
     for bus in buses:
