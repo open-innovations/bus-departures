@@ -5,6 +5,7 @@
 	<meta charset="utf-8" />
 	<title>West Yorkshire Bus Departures</title>
 	<link rel="StyleSheet" href="https://open-innovations.org/resources/style.css" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 	(function(root){
 
@@ -15,6 +16,12 @@
 			else f();
 		};
 	})(window || this);	
+
+	function customLink(form) {
+		var q = document.getElementById("q")
+        //alert(form.q1.value + form.q2.value + form.q3.value);
+		window.open("/bus-times?q=" + form.q1.value + ":" + form.q1Stop.value + ";" + form.q2.value + ":" + form.q2Stop.value + ";" + form.q3.value + ":" + form.q3Stop.value + "&r=" + form.r.value);
+    }
 	</script>
 </head>
 <body class="b6-bg">
@@ -37,10 +44,22 @@
 
 	<div class="holder">
 		<h2>About</h2>
-		<p>West Yorkshire Metro provide a "yournextbus" service however you can only search bus departures for one stop at a time. With this tool you access bus times for multiple stops.</p>
+		<p>West Yorkshire Metro provide a <a href="https://www.wymetro.com/buses/your-next-bus/">"yournextbus"</a> service however you can only search bus departures for one stop at a time. With this tool you access bus times for multiple stops.</p>
 		<p>This is not an ideal soloution, it involves making a seperate request for each bus stop. This means that bus stations with a lot of stops eg. Leeds City will take a good few seconds to load.</p>
-		<p>Times for West Yorkshire stations/points/hubs below:</p>
-
+		<p>Fill in to see bus times for multiple bus stops, you can find bus stop numbers <a href="https://www.wymetro.com/buses/your-next-bus/">here</a></p>
+		<form onsubmit="customLink(this);return false">
+			<label for="q1">Label : </label> <label for="q1Stop">Stop ID</label><br>
+			<input type="text" id="q1" name="q1" value=""> <input type="text" id="q1Stop" name="q1Stop" value=""><br>
+			<label for="q2">Label : </label> <label for="q2Stop">Stop ID</label><br>
+			<input type="text" id="q2" name="q2" value=""> <input type="text" id="q2Stop" name="q2Stop" value=""><br>
+			<label for="q2">Label : </label> <label for="q3Stop">Stop ID</label><br>
+			<input type="text" id="q3" name="q3" value=""> <input type="text" id="q3Stop" name="q3Stop" value=""><br>
+			<label for="r">Routes</label><br>
+			<input type="text" id="r" name="r" value=""><br>
+			<input type="submit" value="See Bus Times">
+		</form> 
+		<br>
+		<p>Times for some West Yorkshire stations/points/hubs below:</p>
 		<h2>Leeds</h2>			
 		<ul class="grid">
 			<li><a href="/leeds-city-bus-station" class="b1-bg"><h3>Leeds City Bus Station</h3></a></li>
@@ -64,20 +83,6 @@
 			<li><a href="/todmorden-bus-station" class="b1-bg"><h3>Todmorden Bus Station</h3></a></li>
 		</ul>		
 
-		<h2>Bradford</h2>			
-		<ul class="grid">
-			<li><a href="/" class="b1-bg"><h3>-</h3></a></li>
-		</ul>	
-		
-		<h2>Wakefield</h2>			
-		<ul class="grid">
-			<li><a href="/" class="b1-bg"><h3>-</h3></a></li>
-		</ul>	
-
-		<h2>Kirklees</h2>			
-		<ul class="grid">
-			<li><a href="/" class="b1-bg"><h3>-</h3></a></li>
-		</ul>	
 	</div>
 
 	<footer class="doublepadded">
